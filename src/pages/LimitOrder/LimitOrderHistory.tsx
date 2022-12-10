@@ -25,13 +25,23 @@ export const LimitOrderHistory: React.FC = () => {
   const rewardCurrencyAddress = useSingleCallResult(rewardDistributorContract, 'rewardCurrency', []).result?.[0]
   const rewardCurrency = useToken(rewardCurrencyAddress)
 
+  const limitOrderButtonStyle = { width: '50%', height: '44px', borderRadius: '9px', fontSize: '14px' }
+
   return (
     <LimitOrderHistoryBody>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 8 }}>
-        <TabButton active={openOrdersTabActive} onClick={() => setOpenOrdersTabActive(true)}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 8, padding: '0 16px' }}>
+        <TabButton
+          active={openOrdersTabActive}
+          onClick={() => setOpenOrdersTabActive(true)}
+          style={limitOrderButtonStyle}
+        >
           Open ({limitOrderHistory.filter((limitOrderHist) => limitOrderHist.isOrderOpen).length})
         </TabButton>
-        <TabButton active={!openOrdersTabActive} onClick={() => setOpenOrdersTabActive(false)}>
+        <TabButton
+          active={!openOrdersTabActive}
+          onClick={() => setOpenOrdersTabActive(false)}
+          style={limitOrderButtonStyle}
+        >
           Completed ({limitOrderHistory.filter((limitOrderHist) => !limitOrderHist.isOrderOpen).length})
         </TabButton>
       </div>

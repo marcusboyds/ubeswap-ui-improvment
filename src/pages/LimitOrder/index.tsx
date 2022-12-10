@@ -252,6 +252,8 @@ export default function LimitOrder() {
     walletType === WalletTypes.PrivateKey ||
     walletType === WalletTypes.Injected
 
+  const limitOrderButtonStyle = { width: '50%', height: '44px', borderRadius: '9px', fontSize: '14px' }
+
   return (
     <>
       {!walletIsSupported && (
@@ -276,11 +278,11 @@ export default function LimitOrder() {
       )}
       <AppBody>
         <SwapHeader title={t('limitOrder')} hideSettings={true} />
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <TabButton active={buying} onClick={() => setBuying(true)}>
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '0 16px' }}>
+          <TabButton active={buying} onClick={() => setBuying(true)} style={limitOrderButtonStyle}>
             Buy
           </TabButton>
-          <TabButton active={!buying} onClick={() => setBuying(false)}>
+          <TabButton active={!buying} onClick={() => setBuying(false)} style={limitOrderButtonStyle}>
             Sell
           </TabButton>
         </div>
