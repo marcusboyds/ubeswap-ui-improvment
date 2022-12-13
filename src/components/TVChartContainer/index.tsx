@@ -25,6 +25,7 @@ export interface ChartContainerProps {
   autosize: ChartingLibraryWidgetOptions['autosize']
   studiesOverrides: ChartingLibraryWidgetOptions['studies_overrides']
   container: ChartingLibraryWidgetOptions['container']
+  theme: ChartingLibraryWidgetOptions['theme']
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -49,6 +50,7 @@ export class TVChartContainer extends React.PureComponent<Partial<ChartContainer
     fullscreen: false,
     autosize: true,
     studiesOverrides: {},
+    theme: 'Light',
   }
 
   private tvWidget: IChartingLibraryWidget | null = null
@@ -78,6 +80,7 @@ export class TVChartContainer extends React.PureComponent<Partial<ChartContainer
       fullscreen: this.props.fullscreen,
       autosize: this.props.autosize,
       studies_overrides: this.props.studiesOverrides,
+      theme: this.props.theme,
     }
 
     const tvWidget = new widget(widgetOptions)

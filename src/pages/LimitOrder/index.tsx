@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next'
 import { Text } from 'rebass'
 import { useDerivedLimitOrderInfo, useLimitOrderActionHandlers, useLimitOrderState } from 'state/limit/hooks'
 import { useSingleCallResult } from 'state/multicall/hooks'
+import { useDarkModeManager } from 'state/user/hooks'
 import { ThemeContext } from 'styled-components'
 
 import { ButtonConfirmed, ButtonLight, ButtonPrimary, TabButton } from '../../components/Button'
@@ -47,6 +48,7 @@ export default function LimitOrder() {
   const { t } = useTranslation()
 
   const theme = useContext(ThemeContext)
+  const [darkMode] = useDarkModeManager()
 
   // toggle wallet when disconnected
   const toggleWalletModal = useWalletModalToggle()
@@ -256,11 +258,24 @@ export default function LimitOrder() {
   const limitOrderButtonStyle = { width: '50%', height: '44px', borderRadius: '9px', fontSize: '14px' }
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
-      <div style={{ margin: '0 auto' }}>
-        <TVChartContainer />
+    <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
+      <div
+        style={{
+          width: '200%',
+          maxWidth: 'calc(100vw - 600px)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <div style={darkMode ? { display: 'none' } : { display: 'block', width: '100%' }}>
+          <TVChartContainer theme={'Light'} />
+        </div>
+        <div style={darkMode ? { display: 'block', width: '100%' } : { display: 'none' }}>
+          <TVChartContainer theme={'Dark'} />
+        </div>
       </div>
-      <div style={{ margin: '0 auto' }}>
+      <div style={{ width: '100%', maxWidth: '420px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {!walletIsSupported && (
           <TopSectionLimitOrder gap="md">
             <DataCard>

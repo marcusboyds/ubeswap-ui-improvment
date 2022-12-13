@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const ToggleElement = styled.span<{ isActive?: boolean; isOnSwitch?: boolean }>`
   padding: 0.25rem 0.5rem;
